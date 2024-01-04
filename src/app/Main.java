@@ -9,7 +9,9 @@ import java.util.ArrayList;
  * This is a test of the github repo.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Auditor.setCurrentUser(new User("Brenden Haskins","1234",true));
+
         ArrayList<Double> prizes = new ArrayList<>();
         prizes.add(10.0);
         prizes.add(20.0);
@@ -25,16 +27,7 @@ public class Main {
 
         Game testGame = new Game(1,1250, "Brenden's Game",1.00,prizes,new ArrayList<>(),0,0.0);
         Game secondGame = new Game(2,1000,"Second Game",2.00,prizesTwo,new ArrayList<>(),0,0.0);
-
-
-        try {
-            app.Streams pipe = new Streams();
-            pipe.readGamesFile();
-            System.out.println(Game.gameShelf);
-        } catch (IOException e) {
-            throw new RuntimeException("ERROR IN TESTING INIT. " + e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        Streams pipe = new Streams();
+        System.out.println(pipe.readLogsFile());
     }
 }

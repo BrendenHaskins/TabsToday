@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -13,11 +14,12 @@ public class User implements Serializable {
     private String pin;
     private boolean isAdmin;
 
-    public User(String fullName, String pin, boolean isAdmin) {
+    public User(String fullName, String pin, boolean isAdmin) throws IOException {
         this.fullName = fullName;
         this.pin = Auditor.encryptPin(pin);
         this.isAdmin = isAdmin;
 
+        new Log(Auditor.getCurrentUser(),"CREATED USER: " + this.toString());
         Auditor.addKnownUser(this);
     }
 

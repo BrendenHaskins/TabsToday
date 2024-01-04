@@ -3,6 +3,7 @@ package app;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  * Base class used for serializing objects - reads and writes text files for capturing/recording objects.
@@ -110,6 +111,33 @@ public class Streams {
        }
 
        return true;
+    }
+
+    /**
+     * Writes each game from the game shelf to the games file.
+     * @return the result of writing to the file.
+     * @throws IOException attempting to write to the file has caused an IO exception.
+     */
+    public boolean writeGamesShelf() throws IOException {
+        for(Game game : Game.gameShelf) {
+            gamesOOS.writeObject(game);
+        }
+
+        return true;
+    }
+
+    public ArrayList<Log> readLogsFile() {
+        ArrayList<Log> output = new ArrayList<>();
+        while(true) {
+            try {
+                output.add((Log)logsOIS.readObject());
+            } catch (EOFException e) {
+                break;
+            } catch (IOException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return output;
     }
 
 

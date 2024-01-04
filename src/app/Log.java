@@ -2,6 +2,7 @@ package app;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,16 +12,15 @@ import java.util.Date;
  * date: when the user did it.
  * pipe: Streams instance for writing logs as they are created.
  */
-public class Log {
+public class Log implements Serializable {
     User user;
     String action;
-    Date date;
+    Date date = new Date();
     Streams pipe = new Streams();
 
-    public Log(User user, String action, Date date) throws IOException {
+    public Log(User user, String action) throws IOException {
         this.user = user;
         this.action = action;
-        this.date = date;
 
         pipe.logsWrite(this);
     }

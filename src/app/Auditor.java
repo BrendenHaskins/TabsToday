@@ -22,7 +22,7 @@ public class Auditor {
      * @return the result of the login attempt.
      */
     public static boolean loginUser(String pin) {
-        String hiddenPin = encryptPin(pin).toString();
+        String hiddenPin = encryptPin(pin);
         for(User user : knownUsers) {
             if(user.getPin().equals(hiddenPin)) {
                 currentUser = user;

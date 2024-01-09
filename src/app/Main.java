@@ -28,6 +28,9 @@ public class Main {
         Game testGame = new Game(1,1250, "Brenden's Game",1.00,prizes,new ArrayList<>(),0,0.0);
         Game secondGame = new Game(2,1000,"Second Game",2.00,prizesTwo,new ArrayList<>(),0,0.0);
         Streams pipe = new Streams();
+        Log testLog = new Log(Auditor.getCurrentUser(),"Tested the app.");
+        pipe.logsWrite(testLog);
+        Log selfWriter = new Log(Auditor.getCurrentUser(),"SELF WRITER");
         System.out.println(pipe.readLogsFile());
     }
 }

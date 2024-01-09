@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +29,7 @@ public class Game implements Serializable {
     private double profitLoss;
 
     public Game(int gameNumber, int tabCount, String gameName, double tabPrice, ArrayList<Double> prizes,
-                ArrayList<Double> awardedPrizes, int sellCount, double profitLoss) {
+                ArrayList<Double> awardedPrizes, int sellCount, double profitLoss) throws IOException {
         this.gameNumber = gameNumber;
         this.tabCount = tabCount;
         this.gameName = gameName;
@@ -39,6 +40,8 @@ public class Game implements Serializable {
         this.profitLoss = profitLoss;
 
         gameShelf.add(this);
+
+        new Log(Auditor.getCurrentUser(),"CREATED GAME: " + this);
     }
 
     /**

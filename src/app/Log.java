@@ -16,12 +16,19 @@ public class Log implements Serializable {
     User user;
     String action;
     Date date = new Date();
-    Streams pipe = new Streams();
+    //Streams pipe = new Streams();
 
     public Log(User user, String action) throws IOException {
         this.user = user;
         this.action = action;
 
+        Streams pipe = new Streams();
         pipe.logsWrite(this);
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + this.user +
+                " Action: " + this.action;
     }
 }

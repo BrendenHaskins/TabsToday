@@ -126,12 +126,14 @@ public class Streams {
         return true;
     }
 
-    public ArrayList<Log> readLogsFile() {
-        ArrayList<Log> output = new ArrayList<>();
+    public ArrayList<String> readLogsFile() {
+        ArrayList<String> output = new ArrayList<>();
         while(true) {
             try {
-                output.add((Log)logsOIS.readObject());
+                System.out.println("Value found");
+                output.add(logsOIS.readObject().toString());
             } catch (EOFException e) {
+                System.out.println("EOF");
                 break;
             } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);

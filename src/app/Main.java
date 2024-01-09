@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Driver class for creating an instance of TabsToday, and testing all implementations
- * TODO: Last implementation was reading games file and writing all games to shelf. Reading shelf next.
+ * FIXME: Log class not serializable?
  * This is a test of the github repo.
  */
 public class Main {
